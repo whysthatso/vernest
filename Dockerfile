@@ -1,5 +1,5 @@
 ARG RUBY_VERSION=3.3.0
-FROM registry.docker.com/library/ruby:$RUBY_VERSION-alpine
+FROM registry.docker.com/library/ruby:$RUBY_VERSION-alpine3.18
 
 WORKDIR /app
 

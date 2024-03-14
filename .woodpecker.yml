@@ -5,10 +5,9 @@ steps:
       registry: git.whyservices.net
       repo: git.whyservices.net/whysthatso/vernest
       tag: ${CI_COMMIT_TAG}
-      #username: wellhosteri
-      username: ${CI_NETRC_USERNAME}
-      password: ${CI_NETRC_PASSWORD}
-        # from_secret: wellhoster_gitea_pass
+      username: whysthatso
+      password:
+        from_secret: whysthatso_gitea_pass
     when:
       branch: ${CI_REPO_DEFAULT_BRANCH}
       event: tag
