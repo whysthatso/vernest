@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Programs List</title>
+  </head>
+  <body>
+    <% flash.keys.each do |type| %>
+      <div data-alert class="flash" <%= type %>>
+        <p sytel="background-color:green;"><%= flash[type] %></p>
+        <a href="#" class="close">&times;</a>
+      </div>
+    <% end %>
+    <h1>Programs List</h1>
+    <table border="1">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Version</th>
+      </tr>
+      <% @programs.each do |program| %>
+        <tr>
+          <td><a href="/programs/<%= program['id'] %>/edit"><%= program['id'] %></a></td>
+          <td><%= program['name'] %></td>
+          <td><%= program['program_type'] %></td>
+          <td><%= program['version'] %></td>
+        </tr>
+      <% end %>
+    </table>
+  </body>
+</html>

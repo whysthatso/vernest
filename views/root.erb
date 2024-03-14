@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>VerNest</title>
+  </head>
+  <body>
+    <h2>Web Application to centrally store version strings of arbitrary things.</h2>
+    <h3>Endpoints</h3>
+    <h4><a href="/">/</a></h4>
+    <p>This page.</p>
+    <h4><a href="/programs/new">/programs/new</a></h4>
+    <p>Form to add a new record</p>
+    <h4><a href="/programs">/programs</a></h4>
+    <p>Index of all records</p>
+    <h4><a href="/programs/:id/edit">/programs/:id/edit</a></h4>
+    <p>Form to edit an existing record</p>
+    <h4><a href="/programs/version?name=Foo%20Bar">/programs/version&name=Foo Bar</a></h4>
+    <p>Returns json string with the currently recorded version string of "Foo Bar"</p>
+    <pre>[{"version":"1.0"}]</pre>
+    <h4><a href="/programs/version?name=Foo%20Bar&program_type=docker%20image">/programs/version?name=Foo Bar&program_type=docker image</a></h4>
+    <p>Returns json string with the currently recorded version string of "Foo Bar"</p>
+    <pre>[{"version":"1.0"}]</pre>
+    <p>or an error if nothing was found</p>
+    <pre>[{"error":"Program not found."}]</pre>
+    <h3>cURL examples</h3>
+    <blockquote>
+      <p>NB basic auth has to be implemented via reverse proxy or similar.</p>
+    </blockquote>
+    <h4>Call to add a new record</h4>
+    <pre>curl -u admin:secret -d '{"name":"Example Program", "version":"1.0", "program_type":"Utility"}' -H "Content-Type: application/json" -X POST http://localhost:4567/programs</pre>
+    <h4>Call to receive version string by providing the program name, and optionally the program type</h4>
+    <pre>curl -u admin:secret -G http://localhost:4567/programs/version --data-urlencode "name=Example Program"</pre>
+    <h4>Call to receive all entries</h4>
+    <pre>curl -u admin:secret -G http://localhost:4567/programs --data-urlencode "format=json"</pre>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Edit Program</title>
+  </head>
+  <body>
+    <h1>Edit Program</h1>
+    <form action="/programs" method="post">
+      <input type="hidden" name="_method" value="put">
+      <input type="hidden" name="id" value="<%= @program['id'] %>">
+
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" value="<%= @program['name'] %>"><br>
+
+      <fieldset>
+        <legend>Type of Program:</legend>
+        <% PROGRAM_TYPES.each do |type| %>
+          <input type="radio" id="type-<%= type %>" name="program_type" value="<%= type %>" <%= 'checked' if @program['program_type'] == type %>>
+          <label for="type-<%= type %>"><%= type %></label><br>
+        <% end %>
+      </fieldset>
+
+      <label for="version">Version:</label>
+      <input type="text" id="version" name="version" value="<%= @program['version'] %>"><br>
+
+      <input type="submit" value="Update">
+    </form>
+  </body>
+</html>
