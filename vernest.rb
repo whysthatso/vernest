@@ -7,7 +7,7 @@ require "json"
 PROGRAM_TYPES = ["docker image", "other"].freeze
 
 # Database setup
-DB = SQLite3::Database.new "db/programs.db"
+DB = SQLite3::Database.new "db/database.sqlite"
 DB.results_as_hash = true
 DB.execute <<-SQL
   CREATE TABLE IF NOT EXISTS programs (
@@ -22,6 +22,8 @@ class Application < Sinatra::Base
   # Configuration
   enable :method_override
   enable :sessions
+  enable :logging
+  set :bind, "0.0.0.0"
   register Sinatra::Flash
   # Log request headers for debugging
   # before do

@@ -1,6 +1,7 @@
 ARG RUBY_VERSION=3.3.0
 FROM registry.docker.com/library/ruby:$RUBY_VERSION-alpine3.18
 
+ENV APP_ENV=production
 WORKDIR /app
 
 RUN apk update \
